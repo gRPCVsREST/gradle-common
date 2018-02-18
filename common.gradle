@@ -1,9 +1,21 @@
-import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:3.1.0'
+    }
+}
 
 apply plugin: 'com.bmuschko.docker-remote-api'
 
+private void checkGcpProject() {
+    if (!System.getenv().hasProperty("GCP_PROJECT")) {
+        throw new GradleException("Please set GCP_PROJECT env var before continuing.")
+    }
+}
 
-task buildDocker(type: DockerBuildImage) {
+task buildDocker(type: com.bmuschko.gradle.docker.tasks.image.DockerBuildImage) {
     dependsOn bootRepackage
     inputDir = project.projectDir
     tag = "${project.name}:latest"
