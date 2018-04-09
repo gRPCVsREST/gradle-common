@@ -7,7 +7,9 @@ buildscript {
     }
 }
 
-apply plugin: 'com.bmuschko.docker-remote-api'
+allprojects {
+  apply plugin: 'com.bmuschko.docker-remote-api'
+}
 
 private void checkGcpProject() {
     if (!System.getenv().hasProperty("GCP_PROJECT")) {
