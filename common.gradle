@@ -15,7 +15,7 @@ allprojects {
 }
 
 private void checkGcpProject() {
-    if (!System.getenv().hasProperty("GCP_PROJECT")) {
+    if (!System.getenv().containsKey("GCP_PROJECT")) {
         throw new GradleException("Please set GCP_PROJECT env var before continuing.")
     }
 }
