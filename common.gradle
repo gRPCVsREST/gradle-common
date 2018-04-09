@@ -9,7 +9,9 @@ buildscript {
 }
 
 allprojects {
-  apply plugin: 'com.bmuschko.docker-remote-api'
+ apply plugin: com.bmuschko.gradle.docker.DockerRemoteApiPlugin
+
+//  apply plugin: 'com.bmuschko.docker-remote-api'
 }
 
 private void checkGcpProject() {
